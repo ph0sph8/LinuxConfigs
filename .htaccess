@@ -1,4 +1,6 @@
 	 #'replaceme' is value used in setup linux script to replace in this conf
+	 Define REDIR_TARGET replaceme 
+	 
 	 ServerSignature Off
 	 Options -Indexes
 	 order allow,deny
