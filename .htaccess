@@ -1,14 +1,7 @@
 	 ServerSignature Off
 	 Options -Indexes
 	 order allow,deny
-	 
-	 deny from google.com
-	 deny from paypal.com
-	 deny from 112.2o7.com
-	 deny from firefox.com
-	 deny from apple.com
-	 deny from env=stealthed
-	
+
 	#User agent strings for windows native tools
 	RewriteCond %{HTTP_USER_AGENT} "bits|bitsadmin|WindowsPowerShell|certutil|adobe" [NC,OR]
 	RewriteCond %{HTTP_USER_AGENT} =""
