@@ -1,4 +1,3 @@
-	 #'replaceme' is value used in setup linux script to replace in this conf 
 	 ServerSignature Off
 	 Options -Indexes
 	 order allow,deny
