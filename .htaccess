@@ -121,7 +121,7 @@
 	RewriteCond %{HTTP_USER_AGENT} ^Widow [OR] 
 	RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [OR] 
 	RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR] 
-	RewriteCond %{HTTP_USER_AGENT} ^Zeus 
+	RewriteCond %{HTTP_USER_AGENT} ^Zeus [OR] 
 	RewriteCond %{HTTP_USER_AGENT} =""
 	RewriteRule ^.*$ replaceme [L]
 	
