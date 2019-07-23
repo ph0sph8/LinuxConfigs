@@ -8,10 +8,6 @@
 	 deny from firefox.com
 	 deny from apple.com
 	 deny from env=stealthed
-	 
-	#This is also at the bottom as catch all
-	#RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
-	#RewriteRule ^.*$ index.html [L]
 	
 	#User agent strings for windows native tools
 	RewriteCond %{HTTP_USER_AGENT} "bits|bitsadmin|WindowsPowerShell|certutil|adobe" [NC,OR]
