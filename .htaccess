@@ -128,5 +128,3 @@
 	#Below is what happend is blcklist above is hit
 	#RewriteRule ^.*$ replaceme [L,R=302]
 	#RewriteRule ^.*$ replaceme [L]
-	
-	allow from all
