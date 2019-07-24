@@ -1,41 +1,45 @@
-        RewriteEngine on
+        # and based on:https://gist.github.com/curi0usJack/971385e8334e189d93a6cb4671238b10 and https://bluescreenofjeff.com
+        #Change with sudo sed -i -e 's/replaceme/{Where to send to whenblock}/g'
+        #Also if you dont want the whitelist page to be index.html you need to sed change that also
+	
+	RewriteEngine on
         RewriteOptions Inherit
         ServerSignature Off
 
         #Time based access
         RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
         RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #Day of week based access
         RewriteCond %{TIME_WDAY} =0
         RewriteCond %{TIME_WDAY} =6
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #User agent strings for windows native tools
         RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell" [NC,OR]
         RewriteCond %{HTTP_USER_AGENT} =""
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #User agent string for native compiled software Libs and Linux tools
         RewriteCond %{HTTP_USER_AGENT} "python|java|linux|wget|curl|.net" [NC,OR]
         RewriteCond %{HTTP_USER_AGENT} =""
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #mobile user agents
         RewriteCond %{HTTP_USER_AGENT} "X11|OpenBSD|Gh0st|virustotalcloud|adobe|git|android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #If useragent contains below filter with catch at bottom
         RewriteCond %{HTTP_USER_AGENT} "BlackWidow|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|+|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 
         #Not allowed post
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ home.html [L]
+        RewriteRule ^.*$ replaceme [L]
 	
 	#Unwanted refers
 	RewriteCond %{HTTP_REFERER} google\.com [OR]
@@ -48,4 +52,4 @@
 	RewriteRule ^.*$ replaceme [F]
 
         #RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
-        #RewriteRule ^.*$ index.html [L]
+        #RewriteRule ^.*$ replaceme_Allowed [L]
