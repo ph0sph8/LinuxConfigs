@@ -21,12 +21,12 @@
 	
 	 #LogLevel alert rewrite:trace3
 	 #Time based access	 
-	 RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600 
+	 RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600 [OR] 
 	 RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
 	 RewriteRule ^.*$ replaceme [L]
 	
 	#Day of week based access
-	 RewriteCond %{TIME_WDAY} =0
+	 RewriteCond %{TIME_WDAY} =0 [OR]
 	 RewriteCond %{TIME_WDAY} =6
 	 RewriteRule ^.*$ replaceme [L]
 	
