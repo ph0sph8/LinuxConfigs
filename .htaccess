@@ -50,6 +50,7 @@
  	RewriteCond %{HTTP_REFERER} paypal\.com [OR]
 	RewriteCond %{HTTP_REFERER} firefox\.com
 	RewriteRule ^.*$ replaceme [F]
-
+	
+	#Below is where to send something if it hits a GOOD condiditon to forward on
         #RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
         #RewriteRule ^.*$ replaceme_Allowed [L]
