@@ -2,6 +2,7 @@
 #HTTP config
 #TESTED For 80 redir to 443 with ssl working conf
 <VirtualHost *:80>
+	ServerName ReplaceServerName
      #Redirect permanent / http://ReDirIPorDOmain
         <Directory /var/www/html>
                Options -Includes -ExecCGI -MultiViews
@@ -25,6 +26,7 @@
 #RUN sudo hostnamectl set-hostname {DOMAIN}
 #Check config syntax 'apache2ctl configtest'
 # Setup global fqdn apache  'sudo echo "ServerName {Server hostname}" | sudo tee /etc/apache2/conf-available/fqdn.conf '
+ServerName ReplaceServerName
 #<VirtualHost *:443>
 #     ServerName IPorDOmain
 #     #Redirect permanent / https://ReDirIPorDOmain
