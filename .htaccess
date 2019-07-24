@@ -1,46 +1,51 @@
-	 ServerSignature Off
-	 Options -Indexes
-	 order allow,deny
+        RewriteEngine on
+        RewriteOptions Inherit
+        ServerSignature Off
 
-	#User agent strings for windows native tools
-	RewriteCond %{HTTP_USER_AGENT} "bits|bitsadmin|WindowsPowerShell|certutil|adobe" [NC,OR]
-	RewriteCond %{HTTP_USER_AGENT} =""
-	RewriteRule ^.*$ replaceme [L]
-	 
-	#mobile user agents
-	RewriteCond %{HTTP_USER_AGENT} "android|blackberry|iPhone|googlebot-mobile|Kindle|Nintendo|PlayStation|Windows Phone|XBOX_ONE_ED|AppleTV|Roku|CrOS|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
-	RewriteRule ^.*$ replaceme [L]
-	
-	#If useragent contains below filter with catch at bottom
-	RewriteCond %{HTTP_USER_AGENT} "Firefox/3.6.8|Safari|OS x|-|HTTP Banner Detection|Lynx|Slackbot|nmap|burp|cloudfront|bingbot|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
-	RewriteRule ^.*$ replaceme [L]
-	
-	#Dont scan or crawl me bra section
-	RewriteCond %{HTTP_USER_AGENT} "BlackWidow|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|+|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st" [NC]
-	RewriteRule ^.*$ replaceme [L]
-	
-	 #LogLevel alert rewrite:trace3
-	 #Time based access	 
-	 RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600 [OR] 
-	 RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
-	 RewriteRule ^.*$ replaceme [L]
-	
-	#Day of week based access
-	 RewriteCond %{TIME_WDAY} =0 [OR]
-	 RewriteCond %{TIME_WDAY} =6
-	 RewriteRule ^.*$ replaceme [L]
-	
-	#Not allowed post
-	RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-	RewriteRule ^.*$ replaceme [L]
-	 
-	 #Unwanted refers
-	 RewriteCond %{HTTP_REFERER} google\.com [OR]
-	 RewriteCond %{HTTP_REFERER} bing\.com [OR]
-	 RewriteCond %{HTTP_REFERER} yahoo\.com [OR]
-	 RewriteCond %{HTTP_REFERER} duckduckgo\.com [OR]
-	 RewriteCond %{HTTP_REFERER} virustotal\.com [OR]
-	 RewriteCond %{HTTP_REFERER} paypal\.com [OR]
-	 RewriteCond %{HTTP_REFERER} firefox\.com
-	 RewriteRule ^.*$ replaceme [F]
+        #Time based access
+        RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
+        RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
+        RewriteRule ^.*$ home.html [L]
 
+        #Day of week based access
+        RewriteCond %{TIME_WDAY} =0
+        RewriteCond %{TIME_WDAY} =6
+        RewriteRule ^.*$ home.html [L]
+
+        RewriteCond %{REQUEST_METHOD} !^(GET|POST)
+        RewriteRule ^.*$ home.html [L]
+
+        #User agent strings for windows native tools
+        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell" [NC,OR]
+        RewriteCond %{HTTP_USER_AGENT} =""
+        RewriteRule ^.*$ home.html [L]
+
+        #User agent string for native compiled software Libs and Linux tools
+        RewriteCond %{HTTP_USER_AGENT} "python|java|linux|wget|curl|.net" [NC,OR]
+        RewriteCond %{HTTP_USER_AGENT} =""
+        RewriteRule ^.*$ home.html [L]
+
+        #mobile user agents
+        RewriteCond %{HTTP_USER_AGENT} "X11|OpenBSD|Gh0st|virustotalcloud|adobe|git|android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
+        RewriteRule ^.*$ home.html [L]
+
+        #If useragent contains below filter with catch at bottom
+        RewriteCond %{HTTP_USER_AGENT} "BlackWidow|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|+|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
+        RewriteRule ^.*$ home.html [L]
+
+        #Not allowed post
+        RewriteCond %{REQUEST_METHOD} !^(GET|POST)
+        RewriteRule ^.*$ home.html [L]
+	
+	#Unwanted refers
+	RewriteCond %{HTTP_REFERER} google\.com [OR]
+	RewriteCond %{HTTP_REFERER} bing\.com [OR]
+	RewriteCond %{HTTP_REFERER} yahoo\.com [OR]
+	RewriteCond %{HTTP_REFERER} duckduckgo\.com [OR]
+ 	RewriteCond %{HTTP_REFERER} virustotal\.com [OR]
+ 	RewriteCond %{HTTP_REFERER} paypal\.com [OR]
+	RewriteCond %{HTTP_REFERER} firefox\.com
+	RewriteRule ^.*$ replaceme [F]
+
+        #RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
+        #RewriteRule ^.*$ index.html [L]
