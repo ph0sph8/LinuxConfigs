@@ -26,9 +26,8 @@
 #RUN sudo hostnamectl set-hostname {DOMAIN}
 #Check config syntax 'apache2ctl configtest'
 # Setup global fqdn apache  'sudo echo "ServerName {Server hostname}" | sudo tee /etc/apache2/conf-available/fqdn.conf '
-ServerName ReplaceServerName
 #<VirtualHost *:443>
-#     ServerName IPorDOmain
+#     ServerName ReplaceServerName
 #     #Redirect permanent / https://ReDirIPorDOmain
 #     SSLEngine on
 
