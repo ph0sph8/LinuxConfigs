@@ -16,7 +16,7 @@
 	RewriteRule ^.*$ replaceme [L]
 	
 	#Dont scan or crawl me bra section
-	RewriteCond %{HTTP_USER_AGENT} "BlackWidow|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|+|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st" [NC,OR]
+	RewriteCond %{HTTP_USER_AGENT} "BlackWidow|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|+|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st" [NC]
 	RewriteRule ^.*$ replaceme [L]
 	
 	 #LogLevel alert rewrite:trace3
