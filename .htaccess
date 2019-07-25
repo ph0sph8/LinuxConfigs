@@ -1,6 +1,8 @@
-        # and based on:https://gist.github.com/curi0usJack/971385e8334e189d93a6cb4671238b10 and https://bluescreenofjeff.com
+        #Based on:https://gist.github.com/curi0usJack/971385e8334e189d93a6cb4671238b10 and https://bluescreenofjeff.com
         #Change with sudo sed -i -e 's/replaceme/{Where to send to whenblock}/g'
-        #Also if you dont want the whitelist page to be index.html you need to sed change that also
+        #Also if you dont want the whitelist page to be replaceme_Allowed you need to sed change that also
+	#REF: https://bluescreenofjeff.com/2016-12-23-apache_mod_rewrite_grab_bag/
+	
 	RewriteEngine on
       	RewriteOptions Inherit
       	ServerSignature Off
