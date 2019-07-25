@@ -37,7 +37,7 @@
         RewriteRule ^.*$ replaceme [L]
 
         #If useragent contains below filter with catch at bottom
-        RewriteCond %{HTTP_USER_AGENT} "BlackWidow|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
+        RewriteCond %{HTTP_USER_AGENT} "BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
         RewriteRule ^.*$ replaceme [L]
 
         #Not allowed post
