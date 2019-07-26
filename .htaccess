@@ -42,7 +42,7 @@
 
         #Not allowed post
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ replaceme [L]
+        RewriteRule ^.*$ http://Google.com [L]
 	
 	#Unwanted refers
 	RewriteCond %{HTTP_REFERER} google\.com [OR]
