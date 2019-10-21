@@ -8,6 +8,7 @@
       	ServerSignature Off
 	
 	ErrorDocument 404 http://Google.com/
+	ErrorDocument 500 http://Google.com/
 	
         #Time based access
         RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
