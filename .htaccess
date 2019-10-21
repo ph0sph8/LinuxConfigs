@@ -24,26 +24,20 @@
 
         #User agent strings for windows native tools
         RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell" [NC,OR]
-        RewriteCond %{HTTP_USER_AGENT} =""
         RewriteRule ^.*$ replaceme [L]
 
         #User agent string for native compiled software Libs and Linux tools
-        RewriteCond %{HTTP_USER_AGENT} "python|java|linux|wget|curl|.net" [NC,OR]
-        RewriteCond %{HTTP_USER_AGENT} ="CampNet0"
+        RewriteCond %{HTTP_USER_AGENT} "python|java|linux|wget|curl|.net|CLR|OpenBSD|git" [NC,OR]
         RewriteRule ^.*$ replaceme [L]
 
         #mobile user agents
-        RewriteCond %{HTTP_USER_AGENT} "X11|OpenBSD|Gh0st|virustotalcloud|adobe|git|android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
+        RewriteCond %{HTTP_USER_AGENT} "iPhone|android|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos" [NC]
         RewriteRule ^.*$ replaceme [L]
 
-        #If useragent contains below filter with catch at bottom
-        RewriteCond %{HTTP_USER_AGENT} "BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
-        RewriteRule ^.*$ replaceme [L]
-	
-	#DickHeads
-	RewriteCond %{HTTP_USER_AGENT} "" [NC,OR]
-        RewriteCond %{HTTP_USER_AGENT} ="Darwin|CampNet"
-        RewriteRule ^.*$ replaceme [L]
+        #BLACKLISTED USER AGENT STRINGS
+        RewriteCond %{HTTP_USER_AGENT} "Opera|zh-cn|Nexus|CampNet0|InfoPath|MSIE|X11|Darwin|Presto|CampNet|Gh0st|virustotalcloud|adobe|BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
+        RewriteCond %{HTTP_USER_AGENT} =""
+	RewriteRule ^.*$ replaceme [L]
 
         #Not allowed post
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
