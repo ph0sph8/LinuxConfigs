@@ -9,6 +9,11 @@
                 AllowOverride All
                 Order allow,deny
                 allow from all
+		
+		<LimitExcept GET POST>
+		deny from all
+		</LimitExcept>
+		
         </Directory>
 
         ServerAdmin webmaster@localhost
@@ -36,6 +41,9 @@
   #   SSLCertificateChainFile PATHca-bundle
 
   #   <Directory /var/www/html>
+	#<LimitExcept GET POST>
+	#deny from all
+	#</LimitExcept>
    #     Options -Includes -ExecCGI -MultiViews
     #    AllowOverride All
      #   Order allow,deny
