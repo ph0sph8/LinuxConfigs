@@ -9,6 +9,9 @@
    #             AllowOverride All
     #            Order allow,deny
      #           allow from all
+     		#<LimitExcept GET POST>
+		#deny from all
+		#</LimitExcept>
 	#<Files "ReplaceFIlePath">
         #Require method POST
         #</Files>
@@ -41,7 +44,11 @@
         AllowOverride All
         Order allow,deny
         allow from all
-        
+	
+        <LimitExcept GET POST>
+	deny from all
+	</LimitExcept>
+	
 	#<Files "ReplaceFIlePath">
         #Require method POST
         #</Files>
