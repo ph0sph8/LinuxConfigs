@@ -11,10 +11,7 @@
 
      		#<LimitExcept GET POST>
 		#deny from all
-		#</LimitExcept>
-	#<Files "ReplaceFIlePath">
-        #Require method POST
-        #</Files>
+		#</LimitExcept>		
       #  </Directory>
 #
  #       ServerAdmin webmaster@localhost
@@ -22,7 +19,10 @@
         #LogLevel rewrite trace6
 #        ErrorLog ${APACHE_LOG_DIR}/error.log
  #       CustomLog ${APACHE_LOG_DIR}/access.log combined
-
+ 
+	#<Files "ReplaceFIlePath">
+        #Require method POST
+        #</Files>
 </VirtualHost>
 
 
@@ -33,6 +33,7 @@
 <VirtualHost *:443>
      ServerName ReplaceServerName
      #Redirect permanent / https://ReDirIPorDOmain
+     
      SSLEngine on
      
      SSLCertificateFile Pathcrt
@@ -47,10 +48,6 @@
         <LimitExcept GET POST>
 	deny from all
 	</LimitExcept>
-	
-	#<Files "ReplaceFIlePath">
-        #Require method POST
-        #</Files>
      </Directory>
 
        ServerAdmin webmaster@localhost
@@ -58,5 +55,8 @@
         #LogLevel rewrite trace6
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-
+	
+	#<Files "ReplaceFIlePath">
+        #Require method POST
+        #</Files>
   </VirtualHost>
