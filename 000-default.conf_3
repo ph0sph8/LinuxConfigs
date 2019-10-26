@@ -19,7 +19,8 @@
         DocumentRoot /var/www/html
         #LogLevel rewrite trace6
         ErrorLog ${APACHE_LOG_DIR}/error.log
-       CustomLog ${APACHE_LOG_DIR}/access.log combined
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+	
 	#<Files "ReplaceFIlePath">
         #Require method POST
         #</Files>
@@ -33,6 +34,7 @@
 #<VirtualHost *:443>
 #     ServerName ReplaceServerName
 #     #Redirect permanent / https://ReDirIPorDOmain
+
 #     SSLEngine on
 
 #     SSLCertificateFile Pathcrt
@@ -40,20 +42,24 @@
   #   SSLCertificateChainFile PATHca-bundle
 
   #   <Directory /var/www/html>
-	#<LimitExcept GET POST>
-	#deny from all
-	#</LimitExcept>
    #     Options -Includes -ExecCGI -MultiViews
     #    AllowOverride All
      #   Order allow,deny
+     
+	#<LimitExcept GET POST>
+	#deny from all
+	#</LimitExcept>
+
      #</Directory>
 
       # ServerAdmin webmaster@localhost
      #  DocumentRoot /var/www/html
         #LogLevel rewrite trace6
-    #    ErrorLog ${APACHE_LOG_DIR}/error.log
-   #     CustomLog ${APACHE_LOG_DIR}/access.log combined
+    #   ErrorLog ${APACHE_LOG_DIR}/error.log
+   #    CustomLog ${APACHE_LOG_DIR}/access.log combined
+   
 	#<Files "ReplaceFIlePath">
         #Require method POST
         #</Files>
+	
   #</VirtualHost>
