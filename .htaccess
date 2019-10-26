@@ -7,8 +7,8 @@
       	RewriteOptions Inherit
       	ServerSignature Off
 	
-	ErrorDocument 404 http://Google.com/
-	ErrorDocument 500 http://Google.com/
+	ErrorDocument 404 http://127.0.0.1/
+	ErrorDocument 500 http://127.0.0.1/
 	
         #Time based access
         RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
@@ -21,7 +21,7 @@
         RewriteRule ^.*$ replaceme [L]
 
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ http://Google.com/ [L]
+        RewriteRule ^.*$ http://127.0.0.1/ [L]
 
         #User agent strings for windows native tools
         RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell" [NC,OR]
@@ -42,7 +42,7 @@
 
         #Not allowed post
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ http://Google.com [L]
+        RewriteRule ^.*$ http://127.0.0.1 [L]
 	
 	#Unwanted refers
 	RewriteCond %{HTTP_REFERER} google\.com [OR]
