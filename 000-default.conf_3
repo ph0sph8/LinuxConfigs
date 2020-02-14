@@ -8,7 +8,7 @@
                Options -Includes -ExecCGI -MultiViews
                 AllowOverride All
                 Order allow,deny
-		
+		allow from all
 		<LimitExcept GET POST>
 		deny from all
 		</LimitExcept>
@@ -45,7 +45,7 @@
    #     Options -Includes -ExecCGI -MultiViews
     #    AllowOverride All
      #   Order allow,deny
-     
+         #allow from all
 	#<LimitExcept GET POST>
 	#deny from all
 	#</LimitExcept>
