@@ -4,11 +4,11 @@
 <VirtualHost *:80>
      ServerName ReplaceServerName
      #Redirect permanent / http://ReDirIPorDOmain
- #       <Directory /var/www/html>
-  #              Options -Includes -ExecCGI -MultiViews
-   #             AllowOverride All
-    #            Order allow,deny
-
+        #<Directory /var/www/html>
+                #Options -Includes -ExecCGI -MultiViews
+                #AllowOverride All
+                #Order allow,deny
+		 #allow from all
      		#<LimitExcept GET POST>
 		#deny from all
 		#</LimitExcept>		
