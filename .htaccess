@@ -47,14 +47,6 @@
         RewriteCond %{HTTP_USER_AGENT} =""
 	RewriteRule ^.*$ replaceme [L]
 	
-	#Unwanted refers
-	RewriteCond %{HTTP_REFERER} google\.com [OR]
-	RewriteCond %{HTTP_REFERER} bing\.com [OR]
-	RewriteCond %{HTTP_REFERER} yahoo\.com [OR]
-	RewriteCond %{HTTP_REFERER} duckduckgo\.com [OR]
- 	RewriteCond %{HTTP_REFERER} virustotal\.com [OR]
-	RewriteRule ^.*$ replaceme [F]
-	
 	#Below is where to send something if it hits a GOOD condiditon to forward on
         #RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
         #RewriteRule ^.*$ replaceme_Allowed [L]
