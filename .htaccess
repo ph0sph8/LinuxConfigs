@@ -9,13 +9,13 @@
 	
 	#Forcing HTTPS
 	#RewriteCond %{HTTPS} !=on [NC]
-	#RewriteRule ^.*$ https://replaceme%{REQUEST_URI} [L,R=301]
+	#RewriteRule ^.*$ https://replaceme_Allowed_SELF%{REQUEST_URI} [L,R=301]
 	
 	## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
 	# LogLevel alert rewrite:trace5
 	
-	ErrorDocument 404 http://127.0.0.1/
-	ErrorDocument 500 http://127.0.0.1/
+	ErrorDocument 404 replaceme
+	ErrorDocument 500 replaceme
 	
         #Time based access
         RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
@@ -28,10 +28,10 @@
         RewriteRule ^.*$ replaceme [L]
 
         RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ http://127.0.0.1/ [L]
+        RewriteRule ^.*$ http://Google.com/ [L]
 
         #User agent strings for windows native tools
-        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell" [NC,OR]
+        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell|.net" [NC,OR]
         RewriteRule ^.*$ replaceme [L]
 
         #User agent string for native compiled software Libs and Linux tools
@@ -43,7 +43,7 @@
         RewriteRule ^.*$ replaceme [L]
 
         #BLACKLISTED USER AGENT STRINGS
-        RewriteCond %{HTTP_USER_AGENT} "BingPreview|SamsungBrowser|HeadlessChrome|DingTalk|compatible|Opera|zh-cn|Mac OS X|CampNet|InfoPath|MSIE|X11|Darwin|Presto|CampNet|Gh0st|virustotalcloud|adobe|BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|OpenBSD|Googlebot|python|java|linux|wget|curl|.net|git|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|sparta|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
+        RewriteCond %{HTTP_USER_AGENT} "Cisco|BingPreview|SamsungBrowser|HeadlessChrome|DingTalk|compatible|Opera|zh-cn|Mac|InfoPath|MSIE|X11|Darwin|Presto|CampNet|adobe|BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|Googlebot|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
         RewriteCond %{HTTP_USER_AGENT} =""
 	RewriteRule ^.*$ replaceme [L]
 	
