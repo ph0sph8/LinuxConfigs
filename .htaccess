@@ -20,12 +20,12 @@
 		
 		#Prevent image hotlinking
 		#RewriteCond %{HTTP_REFERER} !^$  
-        #RewriteCond %{HTTP_REFERER} !^http://(www\.)?example\.com/ [NC]  
+        #RewriteCond %{HTTP_REFERER} !^replaceme_self [NC]  
         #RewriteRule \.(gif|jpg|jpeg|png)$ - [F]
 		
         #Forcing HTTPS
         #RewriteCond %{HTTPS} !=on [NC]
-        #RewriteRule ^.*$ https://replaceme_self%{REQUEST_URI} [L,R=301]
+        #RewriteRule ^.*$ replaceme_self%{REQUEST_URI} [L,R=301]
 	
         ## Uncomment to enable verbose debugging in /var/logs/apache2/error.log
         #LogLevel alert rewrite:trace5
@@ -72,12 +72,12 @@
 		## Uncomment and adjust as needed
 		#RewriteCond %{REQUEST_URI} ^/{URI GOES HERE}?$
 		#RewriteCond %{HTTP_USER_AGENT} ^$
-		#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
+		#RewriteRule ^.*$ "replaceme_Allowed%{REQUEST_URI}" [P,L]
 		
 		## Default Beacon Staging Support (/1234)
 		#RewriteCond %{REQUEST_URI} ^/..../?$
 		#RewriteCond %{HTTP_USER_AGENT} "Mozilla/5.0 \(Windows; U; MSIE 7.0; Windows NT 5.2\) Java/1.5.0_08"
-		#RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
+		#RewriteRule ^.*$ "replaceme_Allowed%{REQUEST_URI}" [P,L]
 	
 		## C2 Traffic (HTTP-GET, HTTP-POST, HTTP-STAGER URIs)
         ## Logic: If a requested URI AND the User-Agent matches, proxy the connection to the Teamserver
@@ -91,7 +91,7 @@
         RewriteCond %{REQUEST_URI} ^(/URI_HERE.*|/URI_HERE.*)$ [NC]
         RewriteCond %{HTTP_USER_AGENT} "Windows NT" [NC]
 		#RewriteCond %{HTTP_COOKIE} COOKIE_VALUE
-        RewriteRule ^.*$ "http://replaceme_Allowed%{REQUEST_URI}" [P,L]
+        RewriteRule ^.*$ "replaceme_Allowed%{REQUEST_URI}" [P,L]
 		
 		ErrorDocument 404 404.html
         #ErrorDocument 500 404.html
