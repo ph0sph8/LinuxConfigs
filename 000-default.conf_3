@@ -3,7 +3,7 @@
 #TESTED For 80 redir to 443 with ssl working conf
 <VirtualHost *:80>
 	ServerName ReplaceServerName
-     #Redirect permanent / http://ReDirIPorDOmain
+     #Redirect permanent / %https://ReDirIPorDomain%
         <Directory /var/www/html>
                Options -Includes -ExecCGI -MultiViews
                 AllowOverride All
@@ -28,18 +28,18 @@
 
 
 #RUN 'a2enmod ssl'
-#RUN sudo hostnamectl set-hostname {DOMAIN}
-#Check config syntax 'apache2ctl configtest'
+#RUN sudo hostnamectl set-hostname {DOMAIN} (if needed)
 # Setup global fqdn apache  'sudo echo "ServerName {Server hostname}" | sudo tee /etc/apache2/conf-available/fqdn.conf '
+#Check config syntax 'apache2ctl configtest'
 #<VirtualHost *:443>
 #     ServerName ReplaceServerName
-#     #Redirect permanent / https://ReDirIPorDOmain
+#     #Redirect permanent / %https://ReDirIPorDomain%
 
 #     SSLEngine on
 
-#     SSLCertificateFile Pathcrt
- #    SSLCertificateKeyFile PATHkey
-  #   SSLCertificateChainFile PATHca-bundle
+#     SSLCertificateFile %Path_crt%
+ #    SSLCertificateKeyFile %PATH_key%
+  #   SSLCertificateChainFile %PATH_ca-bundle%
 
   #   <Directory /var/www/html>
    #     Options -Includes -ExecCGI -MultiViews
