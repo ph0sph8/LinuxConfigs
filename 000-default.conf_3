@@ -40,7 +40,15 @@
 #     SSLCertificateFile %Path_crt%
  #    SSLCertificateKeyFile %PATH_key%
   #   SSLCertificateChainFile %PATH_ca-bundle%
+        # Enable SSL Proxy
+        SSLProxyEngine On
 
+        # Trust Self-Signed Certificates generated
+        SSLProxyVerify none
+        SSLProxyCheckPeerCN off
+        SSLProxyCheckPeerName off
+        SSLProxyCheckPeerExpire off
+	
   #   <Directory /var/www/html>
    #     Options -Includes -ExecCGI -MultiViews
     #    AllowOverride All
