@@ -36,7 +36,7 @@
         #RewriteRule ^.*$ 404.html [L]
 
         #User agent strings for windows native tools
-        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell|.net" [NC]
+        RewriteCond %{HTTP_USER_AGENT} "bits|WindowsPowerShell|.net|Windows NT 6.1" [NC]
         RewriteRule ^.*$ 404.html [L,R=302]
 
         #User agent string for native compiled software Libs and Linux tools
